@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 class Gauge {
-    private String value;
+    private Double humidity;
+    private Double temperature;
 }

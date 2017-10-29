@@ -23,7 +23,8 @@ public class StorageService {
 
         final Point point = Point.measurement("gauge")
                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                .addField("value", gauge.getValue())
+                .addField("humidity", gauge.getHumidity())
+                .addField("temperature", gauge.getTemperature())
                 .build();
 
         influxDB.write(configuration.getDatabase(), "autogen", point);
