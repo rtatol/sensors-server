@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class GaugeController {
 
@@ -21,7 +23,7 @@ public class GaugeController {
     }
 
     @PostMapping("/")
-    public ResponseEntity gauge(@RequestBody final Gauge gauge) {
+    public ResponseEntity gauge(@RequestBody @Valid final Gauge gauge) {
         LOGGER.info(gauge.toString());
         storageService.save(gauge);
 
