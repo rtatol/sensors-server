@@ -11,21 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-public class GaugeController {
+@SuppressWarnings("unused")
+public class GaugesController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GaugeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GaugesController.class);
 
     private final StorageService storageService;
 
     @Autowired
-    GaugeController(final StorageService storageService) {
+    GaugesController(final StorageService storageService) {
         this.storageService = storageService;
     }
 
     @PostMapping("/")
-    public ResponseEntity gauge(@RequestBody @Valid final Gauge gauge) {
-        LOGGER.info(gauge.toString());
-        storageService.save(gauge);
+    public ResponseEntity gauge(@RequestBody @Valid final Gauges gauges) {
+        LOGGER.info(gauges.toString());
+        storageService.save(gauges);
 
         return ResponseEntity.ok().build();
     }

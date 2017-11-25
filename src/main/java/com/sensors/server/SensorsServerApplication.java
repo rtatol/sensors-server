@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootApplication
 public class SensorsServerApplication {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SpringApplication.run(SensorsServerApplication.class, args);
     }
 
@@ -19,7 +19,6 @@ public class SensorsServerApplication {
     public InfluxDB influxDb(final InfluxDbConfiguration influxDbConfiguration) {
 
         final InfluxDB influxDB = InfluxDBFactory.connect(influxDbConfiguration.getUrl());
-
         influxDB.createDatabase(influxDbConfiguration.getDatabase());
         influxDB.enableBatch(100, 500, TimeUnit.MILLISECONDS);
         influxDB.enableGzip();
