@@ -1,11 +1,3 @@
-server:
-  port: 1235
-
-logging:
-  level:
-    org.springframework.web: INFO
-    com.sensors.server: DEBUG
-
-influxDb:
-  url: "http://localhost:8086"
-  database: "gauges"
+spring:
+    profiles:
+        active: remote

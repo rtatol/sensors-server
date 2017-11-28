@@ -16,10 +16,17 @@ public class SensorsServerApplication {
     }
 
     @Bean
-    public InfluxDB influxDb(final InfluxDbConfiguration influxDbConfiguration) {
+    public InfluxDB influxDb(final InfluxDbConfiguration configuration) {
 
-        final InfluxDB influxDB = InfluxDBFactory.connect(influxDbConfiguration.getUrl());
-        influxDB.createDatabase(influxDbConfiguration.getDatabase());
+        final InfluxDB influxDB;
+
+        if (configuration.withCredentials()) {
+            influxDB = InfluxDBFactory.connect(configuration.getUrl(), configuration.getUser(), configuration.getPassword());
+        } else {
+            influxDB = InfluxDBFactory.connect(configuration.getUrl());
+        }
+
+        influxDB.createDatabase(configuration.getDatabase());
         influxDB.enableBatch(100, 500, TimeUnit.MILLISECONDS);
         influxDB.enableGzip();
 
