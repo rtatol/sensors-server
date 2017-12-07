@@ -1,29 +1,22 @@
 package com.sensors.server;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Point;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
-import static java.util.Objects.nonNull;
-
 @Slf4j
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class StorageService {
 
     private final InfluxDB influxDB;
     private final InfluxDbConfiguration configuration;
-
-    @Autowired
-    StorageService(final InfluxDB influxDB, final InfluxDbConfiguration configuration) {
-        this.influxDB = influxDB;
-        this.configuration = configuration;
-    }
+    private final GaugeValidator validator;
 
     void save(final Gauges gauges) {
 
@@ -32,7 +25,7 @@ public class StorageService {
                 .tag("deviceId", gauges.getDeviceId());
 
         gauges.getGauges().forEach((name, value) -> {
-            if (nonNull(value)) {
+            if (validator.isValid(name, value)) {
                 pointBuilder.addField(name, value);
             } else {
                 log.warn("Invalid gauge, name: {}, value: {}", name, value);
