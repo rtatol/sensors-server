@@ -1,5 +1,6 @@
 package com.sensors.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Point;
 import org.slf4j.Logger;
@@ -11,10 +12,9 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.Objects.nonNull;
 
+@Slf4j
 @Service
 public class StorageService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(StorageService.class);
 
     private final InfluxDB influxDB;
     private final InfluxDbConfiguration configuration;
@@ -35,7 +35,7 @@ public class StorageService {
             if (nonNull(value)) {
                 pointBuilder.addField(name, value);
             } else {
-                LOGGER.warn("Invalid gauge, name: {}, value: {}", name, value);
+                log.warn("Invalid gauge, name: {}, value: {}", name, value);
             }
         });
 
