@@ -45,6 +45,5 @@ public class StorageServiceTest {
 
         // then
         verify(influxDB).write(any(), any(), any());
-
     }
 }

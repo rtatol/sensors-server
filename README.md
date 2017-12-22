@@ -1,5 +1,7 @@
 Back-end application for collecting data from sensors (https://github.com/rtatol/sensors-client) and saving them to influxdb.
 
+[![Build Status](https://travis-ci.org/rtatol/sensors-server.svg?branch=master)](https://travis-ci.org/rtatol/sensors-server)
+
 ###### QuickStart
 ```
 mvn clean package

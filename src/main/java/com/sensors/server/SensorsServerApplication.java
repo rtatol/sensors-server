@@ -5,6 +5,7 @@ import org.influxdb.InfluxDBFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,7 @@ public class SensorsServerApplication {
         SpringApplication.run(SensorsServerApplication.class, args);
     }
 
+    @Profile("!test")
     @Bean
     public InfluxDB influxDb(final InfluxDbConfiguration configuration) {
 
@@ -31,5 +33,11 @@ public class SensorsServerApplication {
         influxDB.enableGzip();
 
         return influxDB;
+    }
+
+    @Profile("test")
+    @Bean
+    public InfluxDB influxDbFake() {
+        return new InfluxDbFake();
     }
 }
