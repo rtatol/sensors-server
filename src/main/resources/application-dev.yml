@@ -1,6 +1,11 @@
 server:
   port: 1235
 
+spring:
+  jackson:
+    parser:
+      ALLOW_NON_NUMERIC_NUMBERS: true
+
 logging:
   level:
     org.springframework.web: INFO
