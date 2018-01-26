@@ -12,7 +12,6 @@ import javax.validation.Valid;
 
 @RestController
 @SuppressWarnings("unused")
-@Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class GaugesController {
 
@@ -20,10 +19,7 @@ public class GaugesController {
 
     @PostMapping("/")
     public ResponseEntity gauge(@RequestBody @Valid final Gauges gauges) {
-        log.info(gauges.toString());
-
         storageService.save(gauges);
-
         return ResponseEntity.ok().build();
     }
 }

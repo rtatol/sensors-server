@@ -5,6 +5,7 @@ logging:
   level:
     org.springframework.web: INFO
     com.sensors.server: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 
 influxDb:
   url: "http://localhost:8086"
