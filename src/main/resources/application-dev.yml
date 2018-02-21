@@ -15,3 +15,7 @@ logging:
 influxDb:
   url: "http://localhost:8086"
   database: "gauges"
+
+logzIo:
+  url: "https://url:port"
+  token: "secretToken"
