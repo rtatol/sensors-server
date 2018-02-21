@@ -39,6 +39,11 @@
             <artifactId>influxdb-java</artifactId>
             <version>2.7</version>
         </dependency>
+        <dependency>
+            <groupId>io.logz.logback</groupId>
+            <artifactId>logzio-logback-appender</artifactId>
+            <version>1.0.17</version>
+        </dependency>
 
         <!-- test scope -->
         <dependency>

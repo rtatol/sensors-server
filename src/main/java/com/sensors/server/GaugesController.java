@@ -1,7 +1,7 @@
 package com.sensors.server;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +19,7 @@ public class GaugesController {
 
     @PostMapping("/")
     public ResponseEntity gauge(@RequestBody @Valid final Gauges gauges) {
+        MDC.put("deviceId", gauges.getDeviceId());
         storageService.save(gauges);
         return ResponseEntity.ok().build();
     }
