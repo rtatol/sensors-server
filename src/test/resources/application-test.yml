@@ -4,7 +4,7 @@ server:
 logging:
   level:
     org.springframework.web: ERROR
-    com.sensors.server: ERROR
+    com.sensors.server: DEBUG
 
 influxDb:
   url: "http://localhost:8086"

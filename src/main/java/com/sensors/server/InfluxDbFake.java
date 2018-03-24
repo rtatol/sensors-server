@@ -160,7 +160,7 @@ public class InfluxDbFake implements InfluxDB {
 
     @Override
     public void close() {
-        throw new IllegalStateException("Not supported");
+        log.info("InfluxDb closed");
     }
 
     @Override

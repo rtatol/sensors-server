@@ -1,13 +1,13 @@
 package com.sensors.server;
 
-import lombok.Data;
+import lombok.Value;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-@Data
-public class Gauges {
+@Value
+class Gauges {
 
     @NotEmpty
     private final String deviceId;
