@@ -15,8 +15,8 @@
 
 
     <springProfile name="remote">
-        <springProperty name="token" source="logzIo.token"/>
-        <springProperty name="url" source="logzIo.url"/>
+        <springProperty name="token" source="logzio.token"/>
+        <springProperty name="url" source="logzio.url"/>
 
         <!-- elk -->
         <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>

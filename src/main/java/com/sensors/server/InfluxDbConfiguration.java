@@ -1,15 +1,14 @@
 package com.sensors.server;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.NotBlank;
 
 import static java.util.Objects.nonNull;
 
-@Component
-@ConfigurationProperties("influxDb")
+@ConfigurationProperties("influxdb")
 @Validated
 @Data
 public class InfluxDbConfiguration {

@@ -12,10 +12,10 @@ logging:
     com.sensors.server: DEBUG
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 
-influxDb:
+influxdb:
   url: "http://localhost:8086"
   database: "gauges"
 
-logzIo:
+logzio:
   url: "https://url:port"
   token: "secretToken"

@@ -6,10 +6,10 @@ logging:
     org.springframework.web: ERROR
     com.sensors.server: DEBUG
 
-influxDb:
+influxdb:
   url: "http://localhost:8086"
   database: "gauges"
 
-logzIo:
+logzio:
   url: "https://url:port"
   token: "secretToken"
