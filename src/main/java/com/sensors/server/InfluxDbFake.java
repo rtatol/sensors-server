@@ -1,6 +1,7 @@
 package com.sensors.server;
 
 import lombok.extern.slf4j.Slf4j;
+import org.influxdb.BatchOptions;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.*;
 
@@ -34,12 +35,27 @@ public class InfluxDbFake implements InfluxDB {
     }
 
     @Override
+    public InfluxDB enableBatch() {
+        throw new IllegalStateException("Not supported");
+    }
+
+    @Override
+    public InfluxDB enableBatch(BatchOptions batchOptions) {
+        throw new IllegalStateException("Not supported");
+    }
+
+    @Override
     public InfluxDB enableBatch(int actions, int flushDuration, TimeUnit flushDurationTimeUnit) {
         throw new IllegalStateException("Not supported");
     }
 
     @Override
     public InfluxDB enableBatch(int actions, int flushDuration, TimeUnit flushDurationTimeUnit, ThreadFactory threadFactory) {
+        throw new IllegalStateException("Not supported");
+    }
+
+    @Override
+    public InfluxDB enableBatch(int i, int i1, TimeUnit timeUnit, ThreadFactory threadFactory, BiConsumer<Iterable<Point>, Throwable> biConsumer, ConsistencyLevel consistencyLevel) {
         throw new IllegalStateException("Not supported");
     }
 
@@ -124,6 +140,11 @@ public class InfluxDbFake implements InfluxDB {
     }
 
     @Override
+    public void query(Query query, Consumer<QueryResult> consumer, Consumer<Throwable> consumer1) {
+
+    }
+
+    @Override
     public void query(Query query, int chunkSize, Consumer<QueryResult> consumer) {
         throw new IllegalStateException("Not supported");
     }
@@ -176,5 +197,25 @@ public class InfluxDbFake implements InfluxDB {
     @Override
     public InfluxDB setRetentionPolicy(String retentionPolicy) {
         throw new IllegalStateException("Not supported");
+    }
+
+    @Override
+    public void createRetentionPolicy(String s, String s1, String s2, String s3, int i, boolean b) {
+
+    }
+
+    @Override
+    public void createRetentionPolicy(String s, String s1, String s2, int i, boolean b) {
+
+    }
+
+    @Override
+    public void createRetentionPolicy(String s, String s1, String s2, String s3, int i) {
+
+    }
+
+    @Override
+    public void dropRetentionPolicy(String s, String s1) {
+
     }
 }

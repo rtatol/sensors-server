@@ -1,7 +1,10 @@
 package com.sensors.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
+import org.influxdb.dto.Query;
+import org.influxdb.dto.QueryResult;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -11,6 +14,7 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @SpringBootApplication
 @EnableConfigurationProperties(InfluxDbConfiguration.class)
 public class SensorsServerApplication {
@@ -31,7 +35,15 @@ public class SensorsServerApplication {
             influxDB = InfluxDBFactory.connect(configuration.getUrl());
         }
 
-        influxDB.createDatabase(configuration.getDatabase());
+        final String createDatabaseQueryString = String.format("CREATE DATABASE \"%s\"", configuration.getDatabase());
+        final Query createDbQuery = new Query(createDatabaseQueryString, configuration.getDatabase());
+        final QueryResult result = influxDB.query(createDbQuery);
+
+        if (result.hasError()) {
+            log.error("Error during query execution: {}", result.getError());
+        }
+        log.info("Create DB query result: {}", result.toString());
+
         influxDB.enableBatch(100, 500, TimeUnit.MILLISECONDS);
         influxDB.enableGzip();
 
