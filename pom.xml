@@ -43,7 +43,7 @@
         <dependency>
             <groupId>io.logz.logback</groupId>
             <artifactId>logzio-logback-appender</artifactId>
-            <version>1.0.18</version>
+            <version>v1.0.21</version>
         </dependency>
 
         <!-- test scope -->
